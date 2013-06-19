@@ -86,9 +86,9 @@ void printUsage()
 	cout << "steganos - transfer data steganographically."										<< endl;
 	cout << "Usage: steganos ROLE METHOD"														<< endl;
 	cout << "Roles:"																			<< endl;
-	cout << "	-t, --transmitter		sets the process as transmitter."						<< endl;
-	cout << "	-r, --receiver		set the process as receiver."								<< endl;
-	cout << "Methods:"																			<< endl;
-	cout << "	-f, --file-permissions	sets the transmission method to be file permissions."	<< endl;
-	cout << "	-l, --locks			sets the transmission method to be locks."					<< endl;
+	cout << "   -t, --transmitter       sets the process as transmitter."                       << endl;
+	cout << "   -r, --receiver          set the process as receiver."                           << endl;
+	cout << "Methods:"                                                                          << endl;
+	cout << "   -f, --file-permissions  sets the transmission method to be file permissions."   << endl;
+	cout << "   -l, --locks             sets the transmission method to be locks."              << endl;
 }
