@@ -28,7 +28,6 @@ create_obj_dir:
 	@mkdir -p $(BUILDDIR)
 
 $(BINNAME): $(OBJECTS)
-	$(CXX) $(OBJECTS) -o $(BINNAME) $(LIBS)
 
 $(BUILDDIR)%.o: %.cpp
 	$(CXX) $(CXXFLAGS) $< -o $@
