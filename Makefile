@@ -1,6 +1,6 @@
-CXX	     = c++
-CXXFLAGS = -g -c -pedantic-errors -Iinclude/
-LIBS     = -lncurses -lpthread			# Contains libraries we need to link in.
+CXX	 = c++
+CXXFLAGS = -g -pedantic-errors -Iinclude/
+LDLIBS   = -lncurses -lpthread
 BINNAME  = steganos
 VPATH	 = src/
 BUILDDIR = obj/
@@ -28,9 +28,10 @@ create_obj_dir:
 	@mkdir -p $(BUILDDIR)
 
 $(BINNAME): $(OBJECTS)
+	$(CXX) -o $@ $^ $(LDLIBS)
 
 $(BUILDDIR)%.o: %.cpp
-	$(CXX) $(CXXFLAGS) $< -o $@
+	$(CXX) $(CXXFLAGS) $< -c -o $@
 
 clean:
 	@rm -f $(OBJECTS) $(BINNAME) ;							# not using rm -rf on BUILDDIR inorder to keep the user safe
