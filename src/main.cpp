@@ -30,11 +30,13 @@ int main(int argc, char** argv)
                {"help",				optional_argument, 0, 'h'},
                {"transmitter",		optional_argument, 0, 't'},
                {"receiver",			optional_argument, 0, 'r'},
+               {"transmitter-stdio",		optional_argument, 0, 'T'},
+               {"receiver-stdio",			optional_argument, 0, 'R'},
                {"file-permissions",	optional_argument, 0, 'f'},
                {"locks",			optional_argument, 0, 'l'},
                {0, 0, 0, 0}};
 	try {
-		while ((c = getopt_long(argc, argv, "htrfl", long_options, &option_index)) != -1) {
+		while ((c = getopt_long(argc, argv, "htTrRfl", long_options, &option_index)) != -1) {
 			switch (c) {
 				case 'h':
 					printUsage();
@@ -43,8 +45,14 @@ int main(int argc, char** argv)
 				case 't':
 					cursesDataHandler = new CursesCovertDataTransmitter();
 				  break;
+				case 'T':
+					cursesDataHandler = new StdioCovertDataTransmitter();
+				  break;
 				case 'r':
 					cursesDataHandler = new CursesCovertDataReceiver();
+				  break;
+				case 'R':
+					cursesDataHandler = new StdioCovertDataReceiver();
 				  break;
 				case 'f':
 					covertChannel = new FilePermissionsCovertChannel();
@@ -87,8 +95,10 @@ void printUsage()
 	cout << "steganos - transfer data steganographically."										<< endl;
 	cout << "Usage: steganos ROLE METHOD"														<< endl;
 	cout << "Roles:"																			<< endl;
-	cout << "   -t, --transmitter       sets the process as transmitter."                       << endl;
-	cout << "   -r, --receiver          set the process as receiver."                           << endl;
+	cout << "   -t, --transmitter       sets the process as transmitter. (ncurses)"             << endl;
+	cout << "   -T, --transmitter-stdio sets the process as transmitter. (stdio)"               << endl;
+	cout << "   -r, --receiver          set the process as receiver. (ncurses)"                 << endl;
+	cout << "   -R, --receiver-stdio    set the process as receiver. (stdio)"                   << endl;
 	cout << "Methods:"                                                                          << endl;
 	cout << "   -f, --file-permissions  sets the transmission method to be file permissions."   << endl;
 	cout << "   -l, --locks             sets the transmission method to be locks."              << endl;
