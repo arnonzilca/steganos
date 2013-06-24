@@ -7,6 +7,7 @@
 #include "locks_covert_channel.h"
 #include "file_permissions_covert_channel.h"
 #include "curses_data_handlers.h"
+#include "stdio_data_handlers.h"
 
 using namespace std;
 
@@ -15,7 +16,7 @@ void printUsage();
 int main(int argc, char** argv)
 {
 	ICovertChannel* covertChannel = NULL;			// creating generic covert channel pointer.
-	ICursesDataHandler* cursesDataHandler = NULL;	// creating generic curses data handler pointer.
+	IDataHandler* cursesDataHandler = NULL;	// creating generic data handler pointer.
 
 	if (argc > 3) {
 		cout << "Error: Too many arguments. see help screen (-h/--help)." << endl;	
