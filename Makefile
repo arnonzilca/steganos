@@ -1,5 +1,5 @@
 CXX	 = c++
-CXXFLAGS = -g -pedantic-errors -Iinclude/
+CXXFLAGS = -g -Wall -pedantic-errors -Iinclude/
 LDLIBS   = -lncurses -lpthread
 BINNAME  = steganos
 VPATH	 = src/
