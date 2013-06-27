@@ -1,25 +1,25 @@
-#ifndef _CURSES_DATA_HANDLERS_H_
-#define _CURSES_DATA_HANDLERS_H_
+#ifndef _STDIO_DATA_HANDLERS_H_
+#define _STDIO_DATA_HANDLERS_H_
 
+#include "data_handlers.h"
 #include "covert_data_receiver.h"
 #include "covert_data_transmitter.h"
-#include "data_handlers.h"
 
 //////////////////////////////////////////////////////////////////////////////////////////////
-// The CursesCovertDataReceiver class will be used receive data using a CovertDataReceiver	//
-// and printing it via curses infrastructure.												//
+// The StdioCovertDataReceiver class will be used receive data using a CovertDataReceiver   //
+// and printing it via standard I/O.                                                        //
 // This class will also be used as an IReceiveDataHandler for handling received data from	//
 // CovertDataReceiver.																		//
 //////////////////////////////////////////////////////////////////////////////////////////////
 
-class CursesCovertDataReceiver : public IDataHandler, public IReceiveDataHandler {
+class StdioCovertDataReceiver : public IDataHandler, public IReceiveDataHandler {
 public:
-	
-	CursesCovertDataReceiver()
+
+	StdioCovertDataReceiver()
 	: covertDataReceiver(*this)
 	{}
 	
-	virtual ~CursesCovertDataReceiver() {}
+	virtual ~StdioCovertDataReceiver() {}
 
 	virtual void setCovertChannel(ICovertChannel& covertChannel) {
 		covertDataReceiver.setCovertChannelReceiver(covertChannel);
@@ -38,9 +38,9 @@ protected:
 // user's keyboard using a CovertDataTransmitter and the curses infrastructure.				//
 //////////////////////////////////////////////////////////////////////////////////////////////
 
-class CursesCovertDataTransmitter : public IDataHandler {
+class StdioCovertDataTransmitter : public IDataHandler {
 public:
-	virtual ~CursesCovertDataTransmitter() {}
+	virtual ~StdioCovertDataTransmitter() {}
 
 	virtual void setCovertChannel(ICovertChannel& covertChannel) {
 		covertDataTransmitter.setCovertChannelTransmitter(covertChannel);
