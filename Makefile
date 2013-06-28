@@ -34,7 +34,8 @@ $(BUILDDIR)%.o: %.cpp
 	$(CXX) $(CXXFLAGS) $< -c -o $@
 
 test: all
-	./test_steganos
+	./test_steganos -f
+	./test_steganos -l
 
 clean:
 	@rm -f $(OBJECTS) $(BINNAME) ;							# not using rm -rf on BUILDDIR inorder to keep the user safe
