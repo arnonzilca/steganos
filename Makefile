@@ -33,8 +33,12 @@ $(BINNAME): $(OBJECTS)
 $(BUILDDIR)%.o: %.cpp
 	$(CXX) $(CXXFLAGS) $< -c -o $@
 
-test: all
+test: test-with-files test-with-locks
+
+test-with-files: all
 	./test_steganos -f
+
+test-with-locks: all
 	./test_steganos -l
 
 clean:
