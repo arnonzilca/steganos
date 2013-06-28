@@ -1,0 +1,33 @@
+#!/bin/bash
+
+set -e
+
+# Size of test file
+BYTES=8192
+
+tempdir=$(mktemp -d)
+receiver_pid=
+
+cleanup() {
+	echo "[INFO] Cleaning up"
+	rm -rf $tempdir
+	if [[ $receiver_pid ]]; then
+		kill $receiver_pid || :
+	fi
+}
+
+trap cleanup EXIT
+
+dd if=/dev/urandom of=$tempdir/random_input bs=1 count=$BYTES
+
+echo "[INFO] Preparing receiver"
+./steganos -R -f > $tempdir/output &
+receiver_pid=$!
+
+echo "[INFO] Transmitting data"
+time ./steganos -T -f < $tempdir/random_input
+
+if ! diff $tempdir/random_input $tempdir/output; then
+	echo '[ERROR] Data not transported successfully'
+	exit 1
+fi
