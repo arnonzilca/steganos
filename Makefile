@@ -33,6 +33,14 @@ $(BINNAME): $(OBJECTS)
 $(BUILDDIR)%.o: %.cpp
 	$(CXX) $(CXXFLAGS) $< -c -o $@
 
+test: test-with-files test-with-locks
+
+test-with-files: all
+	./test_steganos -f
+
+test-with-locks: all
+	./test_steganos -l
+
 clean:
 	@rm -f $(OBJECTS) $(BINNAME) ;							# not using rm -rf on BUILDDIR inorder to keep the user safe
 	@if [ -d $(BUILDDIR) ]; then rmdir $(BUILDDIR); fi ;	# rmoving the BUILDDIR if exists
